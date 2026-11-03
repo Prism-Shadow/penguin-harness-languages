@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Myriad-Dreamin/penguin-languages.git",
+    "url": "git+https://github.com/Prism-Shadow/penguin-harness-languages.git",
     "directory": "plugins/language-csharp"
   },
-  "homepage": "https://github.com/Myriad-Dreamin/penguin-languages/tree/main/plugins/language-csharp",
+  "homepage": "https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-csharp",
   "keywords": [
     "penguin-harness-plugin",
     "syntax-highlighting",
@@ -44,5 +44,20 @@
     "@prismshadow/penguin-core": ">=0.2.14",
     "@shikijs/langs": "4.3.1",
     "tsup": "^8.3.0"
+  },
+  "penguin": {
+    "title": "C#",
+    "title_zh": "C#",
+    "description": "C# syntax highlighting for PenguinHarness.",
+    "description_zh": "为 PenguinHarness 提供 C# 语法高亮：一个 TextMate 语法，装上后对话里的 C# 代码块即着色。",
+    "short_description": "C# syntax highlighting for PenguinHarness.",
+    "short_description_zh": "为 PenguinHarness 提供 C# 语法高亮。",
+    "category": "software-development",
+    "preinstall": false,
+    "quick_start": {
+      "prompt": "In any conversation, send a fenced code block tagged `csharp` (aliases: c#, cs). C# syntax highlighting loads on first use — no configuration is needed.",
+      "prompt_zh": "在任意对话里发送以 `csharp` 标注的代码块（别名：c#, cs）。C# 语法高亮在首次使用时加载，无需任何配置。",
+      "skills": []
+    }
   }
 }
