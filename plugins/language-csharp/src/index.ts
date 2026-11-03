@@ -54,3 +54,11 @@ export class CSharpLanguage {
 
 const plugin: Plugin = { modules: [CSharpLanguage] };
 export default plugin;
+
+/**
+ * The plugin index reads this named export statically to check the entry contract; the
+ * harness's own loader keeps using the default export above.
+ */
+export function activate(): Plugin {
+  return plugin;
+}

@@ -54,3 +54,11 @@ export class KotlinLanguage {
 
 const plugin: Plugin = { modules: [KotlinLanguage] };
 export default plugin;
+
+/**
+ * The plugin index reads this named export statically to check the entry contract; the
+ * harness's own loader keeps using the default export above.
+ */
+export function activate(): Plugin {
+  return plugin;
+}

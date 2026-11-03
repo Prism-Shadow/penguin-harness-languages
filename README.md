@@ -1,4 +1,4 @@
-# penguin-languages
+# penguin-harness-languages
 
 Syntax-highlighting plugins for [PenguinHarness](https://github.com/Prism-Shadow/penguin-harness),
 one language per plugin. They are external plugins: each is an npm package a Project installs from

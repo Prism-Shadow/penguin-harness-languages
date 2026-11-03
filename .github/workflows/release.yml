@@ -1,0 +1,61 @@
+# Release: publish one language plugin to npm.
+#
+# Tag the release as `<package>/<version>`, e.g. `language-csharp/v0.1.0`, and the workflow
+# publishes that package at that version with `--access public`. A package name that does not
+# exist on npm yet cannot be published by a workflow: a maintainer publishes the first version
+# by hand and configures Trusted Publishing (this repository and this workflow) on npm, after
+# which every release goes through here.
+name: release
+
+on:
+  push:
+    tags:
+      - "language-*/v*"
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Read the tag
+        id: tag
+        run: |
+          echo "package=${GITHUB_REF_NAME%%/*}" >> "$GITHUB_OUTPUT"
+          echo "version=${GITHUB_REF_NAME#*/v}" >> "$GITHUB_OUTPUT"
+
+      - name: Check the tag matches the manifest
+        run: |
+          pkg="plugins/${{ steps.tag.outputs.package }}"
+          version="${{ steps.tag.outputs.version }}"
+          declared=$(node -p "require('./' + process.argv[1] + '/package.json').version" "$pkg")
+          if [ "$declared" != "$version" ]; then
+            echo "tag says $version but $pkg/package.json says $declared" >&2
+            exit 1
+          fi
+
+      - name: Build
+        run: pnpm --filter "./plugins/${{ steps.tag.outputs.package }}" build
+
+      - name: Publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: plugins/${{ steps.tag.outputs.package }}
