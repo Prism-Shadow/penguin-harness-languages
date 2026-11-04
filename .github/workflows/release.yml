@@ -1,6 +1,6 @@
 # Release: publish one language plugin to npm.
 #
-# Tag the release as `<package>/<version>`, e.g. `language-csharp/v0.1.0`, and the workflow
+# Tag the release as `<package>/<version>`, e.g. `language-csharp/v0.0.1`, and the workflow
 # publishes that package at that version with `--access public`. A package name that does not
 # exist on npm yet cannot be published by a workflow: a maintainer publishes the first version
 # by hand and configures Trusted Publishing (this repository and this workflow) on npm, after
