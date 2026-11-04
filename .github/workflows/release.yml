@@ -1,10 +1,11 @@
-# Release: publish one language plugin to npm.
+# Release: cut a GitHub release for one language plugin.
 #
 # Tag the release as `<package>/<version>`, e.g. `language-csharp/v0.0.1`, and the workflow
-# publishes that package at that version with `--access public`. A package name that does not
-# exist on npm yet cannot be published by a workflow: a maintainer publishes the first version
-# by hand and configures Trusted Publishing (this repository and this workflow) on npm, after
-# which every release goes through here.
+# builds that package, packs it with `npm pack` and attaches the tarball to a GitHub release
+# named after the tag. Publishing to npm comes later: the package names do not exist on the
+# registry yet, so a maintainer publishes the first version by hand and configures Trusted
+# Publishing (this repository and a release workflow) on npm; after that a publish step
+# joins here, keyed off the same tag.
 name: release
 
 on:
@@ -16,12 +17,10 @@ permissions:
   contents: read
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-    environment: npm
     permissions:
-      contents: read
-      id-token: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -30,7 +29,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
 
       - name: Install
         run: pnpm install --no-frozen-lockfile
@@ -54,8 +52,18 @@ jobs:
       - name: Build
         run: pnpm --filter "./plugins/${{ steps.tag.outputs.package }}" build
 
-      - name: Publish
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Pack
+        run: npm pack --pack-destination "$RUNNER_TEMP"
         working-directory: plugins/${{ steps.tag.outputs.package }}
+
+      - name: GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.tag.outputs.version }}
+        run: |
+          tarball=$(ls "$RUNNER_TEMP"/*.tgz)
+          gh release create "$GITHUB_REF_NAME" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "${{ steps.tag.outputs.package }} v$VERSION" \
+            --notes "First release. See [CHANGELOG.md](https://github.com/$GITHUB_REPOSITORY/blob/main/CHANGELOG.md)." \
+            "$tarball"
