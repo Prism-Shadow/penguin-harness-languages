@@ -1,16 +1,17 @@
 # Changelog
 
 All notable changes to the packages in this repository are documented here.
-Each package versions independently; entries are grouped by package and version.
+The five packages version together: one version, one release on GitHub, one
+entry here, with the changes per package under it.
 
-The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
-every package starts at 0.0.1 and versions independently after that.
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [@penguinharness/language-csharp]
+## [0.0.2] — 2026-11-04
 
-### [0.0.1] — 2026-11-03
+The first published release, one GitHub release for the whole repository
+(`v0.0.2`), with the packed tarball of every package attached.
 
-First release.
+### @penguinharness/language-csharp
 
 - C# syntax highlighting for PenguinHarness: grammar, aliases, file extensions and the
   generated manifest table agree, per the contributions tests.
@@ -19,38 +20,24 @@ First release.
 - The entry exports a named `activate` alongside the default plugin, so the plugin index
   can read it statically.
 
-## [@penguinharness/language-dart]
+### @penguinharness/language-dart
 
-### [0.0.1] — 2026-11-03
+- Dart syntax highlighting, same shape as the C# package: contributions tests, RFC-0003
+  penguin fields, named `activate` export.
 
-First release. Same shape as `@penguinharness/language-csharp` 0.0.1: Dart grammar,
-RFC-0003 penguin fields, named `activate` export.
+### @penguinharness/language-kotlin
 
-## [@penguinharness/language-kotlin]
+- Kotlin syntax highlighting, same shape as the C# package: contributions tests, RFC-0003
+  penguin fields, named `activate` export.
 
-### [0.0.1] — 2026-11-03
+### @penguinharness/language-swift
 
-First release. Same shape as `@penguinharness/language-csharp` 0.0.1: Kotlin grammar,
-RFC-0003 penguin fields, named `activate` export.
+- Swift syntax highlighting, same shape as the C# package: contributions tests, RFC-0003
+  penguin fields, named `activate` export.
 
-## [@penguinharness/language-swift]
+### @penguinharness/language-typst
 
-### [0.0.1] — 2026-11-03
+- Typst syntax highlighting, same shape as the C# package: contributions tests, RFC-0003
+  penguin fields, named `activate` export.
 
-First release. Same shape as `@penguinharness/language-csharp` 0.0.1: Swift grammar,
-RFC-0003 penguin fields, named `activate` export.
-
-## [@penguinharness/language-typst]
-
-### [0.0.1] — 2026-11-03
-
-First release. Same shape as `@penguinharness/language-csharp` 0.0.1: Typst grammar,
-RFC-0003 penguin fields, named `activate` export.
-
-[@penguinharness/language-csharp]: https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-csharp
-[@penguinharness/language-dart]: https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-dart
-[@penguinharness/language-kotlin]: https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-kotlin
-[@penguinharness/language-swift]: https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-swift
-[@penguinharness/language-typst]: https://github.com/Prism-Shadow/penguin-harness-languages/tree/main/plugins/language-typst
-
-[0.0.1]: https://github.com/Prism-Shadow/penguin-harness-languages/releases?q=language-&tag=language-csharp%2Fv0.0.1
+[0.0.2]: https://github.com/Prism-Shadow/penguin-harness-languages/releases/tag/v0.0.2
