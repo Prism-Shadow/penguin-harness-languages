@@ -1,17 +1,17 @@
-# Release: cut a GitHub release for one language plugin.
+# Release: cut one GitHub release for the whole repository.
 #
-# Tag the release as `<package>/<version>`, e.g. `language-csharp/v0.0.1`, and the workflow
-# builds that package, packs it with `npm pack` and attaches the tarball to a GitHub release
-# named after the tag. Publishing to npm comes later: the package names do not exist on the
-# registry yet, so a maintainer publishes the first version by hand and configures Trusted
-# Publishing (this repository and a release workflow) on npm; after that a publish step
-# joins here, keyed off the same tag.
+# Tag the release as `v<version>`, e.g. `v0.0.2`, and the workflow builds every package at
+# that version, packs each with `npm pack`, and attaches all tarballs to one GitHub release
+# named after the tag, with the matching CHANGELOG section as the notes. Publishing to npm
+# comes later: the package names do not exist on the registry yet, so a maintainer publishes
+# the first version by hand and configures Trusted Publishing on npm; after that a publish
+# step joins here, keyed off the same tag.
 name: release
 
 on:
   push:
     tags:
-      - "language-*/v*"
+      - "v*"
 
 permissions:
   contents: read
@@ -33,37 +33,39 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: Read the tag
+      - name: Read the version from the tag
         id: tag
-        run: |
-          echo "package=${GITHUB_REF_NAME%%/*}" >> "$GITHUB_OUTPUT"
-          echo "version=${GITHUB_REF_NAME#*/v}" >> "$GITHUB_OUTPUT"
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
-      - name: Check the tag matches the manifest
+      - name: Check every manifest carries the tag's version
         run: |
-          pkg="plugins/${{ steps.tag.outputs.package }}"
           version="${{ steps.tag.outputs.version }}"
-          declared=$(node -p "require('./' + process.argv[1] + '/package.json').version" "$pkg")
-          if [ "$declared" != "$version" ]; then
-            echo "tag says $version but $pkg/package.json says $declared" >&2
-            exit 1
-          fi
+          for manifest in plugins/*/package.json; do
+            declared=$(node -p "require('./' + process.argv[1]).version" "$manifest")
+            if [ "$declared" != "$version" ]; then
+              echo "$manifest says $declared, tag says $version" >&2
+              exit 1
+            fi
+          done
 
       - name: Build
-        run: pnpm --filter "./plugins/${{ steps.tag.outputs.package }}" build
+        run: pnpm -r build
 
-      - name: Pack
-        run: npm pack --pack-destination "$RUNNER_TEMP"
-        working-directory: plugins/${{ steps.tag.outputs.package }}
+      - name: Pack every package
+        run: pnpm -r exec npm pack --pack-destination "$RUNNER_TEMP"
 
-      - name: GitHub release
+      - name: One GitHub release with the changelog and every tarball
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.tag.outputs.version }}
         run: |
-          tarball=$(ls "$RUNNER_TEMP"/*.tgz)
+          awk -v ver="$VERSION" '
+            $0 ~ "^## \\[" ver "\\]" { on=1; next }
+            on && /^## \[/ { exit }
+            on { print }
+          ' CHANGELOG.md | sed '/./,$!d' > "$RUNNER_TEMP/notes.md"
           gh release create "$GITHUB_REF_NAME" \
             --repo "$GITHUB_REPOSITORY" \
-            --title "${{ steps.tag.outputs.package }} v$VERSION" \
-            --notes "First release. See [CHANGELOG.md](https://github.com/$GITHUB_REPOSITORY/blob/main/CHANGELOG.md)." \
-            "$tarball"
+            --title "v$VERSION" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            "$RUNNER_TEMP"/*.tgz

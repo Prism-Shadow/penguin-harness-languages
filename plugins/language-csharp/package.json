@@ -1,6 +1,6 @@
 {
   "name": "@penguinharness/language-csharp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "C# syntax highlighting for PenguinHarness.",
   "license": "MIT",
