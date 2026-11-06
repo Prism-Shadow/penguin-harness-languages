@@ -1,6 +1,6 @@
 {
   "name": "@penguinharness/language-kotlin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "Kotlin syntax highlighting for PenguinHarness.",
   "license": "MIT",
