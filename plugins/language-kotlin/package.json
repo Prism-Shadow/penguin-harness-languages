@@ -53,7 +53,7 @@
     "description_zh": "为 PenguinHarness 提供 Kotlin 语法高亮：一个 TextMate 语法，装上后对话里的 Kotlin 代码块即着色。",
     "short_description": "Kotlin syntax highlighting for PenguinHarness.",
     "short_description_zh": "为 PenguinHarness 提供 Kotlin 语法高亮。",
-    "category": "integration",
+    "category": "software-development",
     "icon": "icon.svg",
     "preinstall": false,
     "quick_start": {
