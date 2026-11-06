@@ -30,6 +30,7 @@
   "files": [
     "dist",
     "README.md",
+    "icon.png",
     "LICENSE",
     "ifaces.json"
   ],
@@ -46,13 +47,14 @@
     "tsup": "^8.3.0"
   },
   "penguin": {
-    "title": "Typst",
-    "title_zh": "Typst",
+    "title": "Typst Language Support",
+    "title_zh": "Typst 语言支持",
     "description": "Typst syntax highlighting for PenguinHarness.",
     "description_zh": "为 PenguinHarness 提供 Typst 语法高亮：一个 TextMate 语法，装上后对话里的 Typst 代码块即着色。",
     "short_description": "Typst syntax highlighting for PenguinHarness.",
     "short_description_zh": "为 PenguinHarness 提供 Typst 语法高亮。",
-    "category": "software-development",
+    "category": "integration",
+    "icon": "icon.png",
     "preinstall": false,
     "quick_start": {
       "prompt": "In any conversation, send a fenced code block tagged `typst` (aliases: typ). Typst syntax highlighting loads on first use — no configuration is needed.",
