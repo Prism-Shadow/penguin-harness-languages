@@ -46,8 +46,8 @@
     "tsup": "^8.3.0"
   },
   "penguin": {
-    "title": "C#",
-    "title_zh": "C#",
+    "title": "C# Language Support",
+    "title_zh": "C# 语言支持",
     "description": "C# syntax highlighting for PenguinHarness.",
     "description_zh": "为 PenguinHarness 提供 C# 语法高亮：一个 TextMate 语法，装上后对话里的 C# 代码块即着色。",
     "short_description": "C# syntax highlighting for PenguinHarness.",

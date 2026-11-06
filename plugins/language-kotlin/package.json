@@ -46,8 +46,8 @@
     "tsup": "^8.3.0"
   },
   "penguin": {
-    "title": "Kotlin",
-    "title_zh": "Kotlin",
+    "title": "Kotlin Language Support",
+    "title_zh": "Kotlin 语言支持",
     "description": "Kotlin syntax highlighting for PenguinHarness.",
     "description_zh": "为 PenguinHarness 提供 Kotlin 语法高亮：一个 TextMate 语法，装上后对话里的 Kotlin 代码块即着色。",
     "short_description": "Kotlin syntax highlighting for PenguinHarness.",

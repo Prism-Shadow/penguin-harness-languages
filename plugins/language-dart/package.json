@@ -46,8 +46,8 @@
     "tsup": "^8.3.0"
   },
   "penguin": {
-    "title": "Dart",
-    "title_zh": "Dart",
+    "title": "Dart Language Support",
+    "title_zh": "Dart 语言支持",
     "description": "Dart syntax highlighting for PenguinHarness.",
     "description_zh": "为 PenguinHarness 提供 Dart 语法高亮：一个 TextMate 语法，装上后对话里的 Dart 代码块即着色。",
     "short_description": "Dart syntax highlighting for PenguinHarness.",
