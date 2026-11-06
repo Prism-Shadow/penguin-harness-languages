@@ -46,7 +46,8 @@
     "tsup": "^8.3.0"
   },
   "penguin": {
-    "title": "Typst",
+    "kind": "Languages",
+    "title": "Typst Language Support",
     "title_zh": "Typst",
     "description": "Typst syntax highlighting for PenguinHarness.",
     "description_zh": "为 PenguinHarness 提供 Typst 语法高亮：一个 TextMate 语法，装上后对话里的 Typst 代码块即着色。",
