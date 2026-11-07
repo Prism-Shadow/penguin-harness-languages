@@ -1,6 +1,6 @@
 {
   "name": "@penguinharness/language-swift",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "description": "Swift syntax highlighting for PenguinHarness.",
   "license": "MIT",
@@ -28,10 +28,11 @@
     }
   },
   "files": [
-    "dist",
-    "README.md",
-    "icon.svg",
     "LICENSE",
+    "README.md",
+    "README.zh.md",
+    "dist",
+    "icon.svg",
     "ifaces.json"
   ],
   "scripts": {
