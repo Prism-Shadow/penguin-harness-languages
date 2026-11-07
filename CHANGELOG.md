@@ -73,5 +73,38 @@ The first published release, one GitHub release for the whole repository
 - Typst syntax highlighting, same shape as the C# package: contributions tests, RFC-0003
   penguin fields, named `activate` export.
 
+## [0.0.4] — 2026-11-07
+
+Bilingual delivery release: the Chinese readme actually ships this time, and the
+card gains a Chinese description.
+
+### All five packages
+
+- `files` whitelist now lists `README.zh.md` — 0.0.3 declared a Chinese readme but
+  the packer silently dropped it, so the published tarball was English-only.
+- `penguin.description_zh` added to each card: the Chinese description beside the
+  English one, matching the `title` / `title_zh` pairing from 0.0.3.
+
+### @penguinharness/language-csharp
+
+- Version 0.0.4, rebuild with both `README.md` and `README.zh.md` in the tarball.
+
+### @penguinharness/language-dart
+
+- Version 0.0.4, rebuild with both `README.md` and `README.zh.md` in the tarball.
+
+### @penguinharness/language-kotlin
+
+- Version 0.0.4, rebuild with both `README.md` and `README.zh.md` in the tarball.
+
+### @penguinharness/language-swift
+
+- Version 0.0.4, rebuild with both `README.md` and `README.zh.md` in the tarball.
+
+### @penguinharness/language-typst
+
+- Version 0.0.4, rebuild with both `README.md` and `README.zh.md` in the tarball.
+
+[0.0.4]: https://github.com/Prism-Shadow/penguin-harness-languages/releases/tag/v0.0.4
 [0.0.3]: https://github.com/Prism-Shadow/penguin-harness-languages/releases/tag/v0.0.3
 [0.0.2]: https://github.com/Prism-Shadow/penguin-harness-languages/releases/tag/v0.0.2
