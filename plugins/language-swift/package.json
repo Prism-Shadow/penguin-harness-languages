@@ -28,10 +28,11 @@
     }
   },
   "files": [
-    "dist",
-    "README.md",
-    "icon.svg",
     "LICENSE",
+    "README.md",
+    "README.zh.md",
+    "dist",
+    "icon.svg",
     "ifaces.json"
   ],
   "scripts": {
